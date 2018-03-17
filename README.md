@@ -34,11 +34,12 @@ NOTE: Choose the latest version and turn on Developer mode.
 After completing the above processes, run `testTweet` function in `test/api.gs` as a test, which posts a `Yeah!` tweet.
 
 ## Usage
-1. Set a GAS trigger (hourly, daily, weekly, etc.) for your script.
+1. Set a GAS trigger (hourly, daily, weekly, etc.) for `post` of `src/post.gs`.
     * `Edit > Trigger`.
 
 ## Learning Data Sources
 * [TED](https://www.ted.com/): The talk shown at the top of the index page.
+* (To be added)
 
 # Todos
 Refer to Issues to see the latest Todo list.
