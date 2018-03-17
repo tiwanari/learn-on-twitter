@@ -28,9 +28,16 @@ NOTE: Choose the latest version and turn on Developer mode.
 
 After completing the above processes, run `testTweet` function in `test/api.gs` as a test, which posts a `Yeah!` tweet.
 
+## Usage
+1. Set a GAS trigger (hourly, daily, weekly, etc.) for your script.
+    * `Edit > Trigger`.
+
+## Learning Data Sources
+* [TED|https://www.ted.com/]: The talk shown at the top of the index page.
+
 # Todos
 * Make several options for learning data source.
-* Use Google Spreadsheet as configuration file.
+* Use Google Spreadsheet as a configuration file.
     * Keep usernames and data sources each user wants to use.
 
 # License
