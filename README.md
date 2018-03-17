@@ -19,7 +19,7 @@ Example: https://twitter.com/LearnOnTwit
 1. Add libraries by following the next section.
 
 ### Dependency: libraries
-NOTE: Choose the latest version and turn on Developer mode.
+NOTE: Choose the latest version.
 
 1. Go to `Resource > Library...`.
 1. Add `Oauth1` by putting `1CXDCY5sqT9ph64fFwSzVtXnbjpSfWdRymafDrtIZ7Z_hwysTY7IIhi7s`.
@@ -34,7 +34,7 @@ NOTE: Choose the latest version and turn on Developer mode.
 After completing the above processes, run `testTweet` function in `test/api.gs` as a test, which posts a `Yeah!` tweet.
 
 ## Usage
-1. Set a GAS trigger (hourly, daily, weekly, etc.) for `post` of `src/post.gs`.
+1. Set a GAS trigger (hourly, daily, weekly, etc.) for `post` function in `src/post.gs`.
     * `Edit > Trigger`.
 
 ## Learning Data Sources
