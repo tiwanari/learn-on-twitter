@@ -28,25 +28,3 @@ function getOAuthURL() {
   Logger.log(getService().authorize());
 }
 
-function tweet(text) {
-  var service = getService();
-  if (service.hasAccess()) {
-    var url = 'https://api.twitter.com/1.1/statuses/update.json';
-    var payload = {
-      status: text
-    };
-    var options = {
-      method: 'post',
-      payload: payload,
-      escaping: false
-    };
-    var response = service.fetch(url, options);
-    var result = JSON.parse(response.getContentText());
-    Logger.log(JSON.stringify(result, null, 2));
-    return result;
-  }
-}
-
-function test(){
-  request("Yeah!");
-}
