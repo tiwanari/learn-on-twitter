@@ -11,9 +11,15 @@ Learn on Twitter
 1. Write down `API key` and `API Secret`.
 1. Go to `File > Project Properties > Script Properties`.
 1. Set the key and secret you wrote down as `API_KEY` and `API_SECRET` respectively.
+1. Add libraries by following the next section.
+
+### Dependency: libraries
+NOTE: Choose the latest version and turn on Developer mode.
+
 1. Go to `Resource > Library...`.
 1. Add `Oauth1` by putting `1CXDCY5sqT9ph64fFwSzVtXnbjpSfWdRymafDrtIZ7Z_hwysTY7IIhi7s`.
-   * Choose the latest version and turn on Developer mode.
+1. Add `Parser` by putting `M1lugvAXKKtUxn_vdAG9JZleS6DrsjUUV`.
+
 
 ## Authorize and test
 1. Run `getOAuthURL`.
