@@ -13,14 +13,14 @@ Learn on Twitter
 1. Set the key and secret you wrote down as `API_KEY` and `API_SECRET` respectively.
 1. Go to `Resource > Library...`.
 1. Add `Oauth1` by putting `1CXDCY5sqT9ph64fFwSzVtXnbjpSfWdRymafDrtIZ7Z_hwysTY7IIhi7s`.
-   * Choose the latest version and turn on Developer mode. 
+   * Choose the latest version and turn on Developer mode.
 
 ## Authorize and test
 1. Run `getOAuthURL`.
 1. Check the log and copy the link.
 1. Open the link and accept what it says.
 
-After its completion, run `test` function as a test, which posts a `Yeah!` tweet.
+After completing the above processes, run `testTweet` function in `test/api.gs` as a test, which posts a `Yeah!` tweet.
 
 # Todos
 * Make several options for learning data source.
