@@ -1,0 +1,3 @@
+function testTweet(){
+  tweet("Yeah!");
+}
