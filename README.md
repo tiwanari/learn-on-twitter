@@ -23,3 +23,6 @@ After its completion, run `test` function as a test, which posts a `Yeah!` tweet
 * Make several options for learning data source.
 * Use Google Spreadsheet as configuration file.
     * Keep usernames and data sources each user wants to use.
+
+# License
+MIT
