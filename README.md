@@ -1,9 +1,14 @@
 Learn on Twitter
 ===
 
+This repository is a collection of Google Apps Scripts to run a Twitter bot which sends its followers learning topics periodically. You can setup your own Twitter bot using these scripts easily by following the setup section.
+
+Example: https://twitter.com/LearnOnTwit
+
+
 # How to use
 ## Setup
-1. Make a Google App Script on https://script.google.com.
+1. Make a Google Apps Script on https://script.google.com.
 1. Pull this repository using https://github.com/leonhartX/gas-github.
 1. Copy the script URL `https://script.google.com/macros/d/{PROJECT_ID}`.
 1. Create a Twitter application on https://apps.twitter.com/app/.
@@ -33,9 +38,11 @@ After completing the above processes, run `testTweet` function in `test/api.gs` 
     * `Edit > Trigger`.
 
 ## Learning Data Sources
-* [TED|https://www.ted.com/]: The talk shown at the top of the index page.
+* [TED](https://www.ted.com/): The talk shown at the top of the index page.
 
 # Todos
+Refer to Issues to see the latest Todo list.
+
 * Make several options for learning data source.
 * Use Google Spreadsheet as a configuration file.
     * Keep usernames and data sources each user wants to use.
