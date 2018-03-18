@@ -2,7 +2,7 @@ function createMentionPart(followers) {
   return '@' + followers.join(' @');
 }
 
-function choose(followers) {
+function chooseTopic(followers) {
   // TODO: Read configuration from GoogleSpreadsheet or something
   var time = new Date();
   if (time.getHours() < 12) return 1;
@@ -10,9 +10,9 @@ function choose(followers) {
 }
 
 function createBody() {
-  var category = choose(followers);
+  var topic = chooseTopic(followers);
   
-  switch (category) {
+  switch (topic) {
     case 1:
       return learnersDictWOD();
     case 2:
