@@ -1,4 +1,4 @@
-// set proper values 
+// Set proper values 
 // File > Project Properties > Script Properties
 var API_KEY = PropertiesService.getScriptProperties().getProperty('API_KEY');
 var API_SECRET = PropertiesService.getScriptProperties().getProperty('API_SECRET');
@@ -27,4 +27,3 @@ function reset() {
 function getOAuthURL() {
   Logger.log(getService().authorize());
 }
-
