@@ -9,3 +9,13 @@ function tedHomePageSpotlight() {
   
   return title + ' ' + url;
 }
+
+function learnersDictWOD() {
+  var url = 'http://www.learnersdictionary.com/word-of-the-day';
+  var html = UrlFetchApp.fetch(url).getContentText();
+  
+  var word = Parser.data(html).from('<span class = "hw_txt">').to('</span>').build();
+  var pos = Parser.data(html).from('<span class="fl">').to('</span>').build();
+  
+  return 'Word of the Day: ' + word + ' (' + pos + ', ' + url + ')';
+}
