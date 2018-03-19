@@ -37,8 +37,10 @@ After completing the above processes, run `testTweet` function in `test/api.gs` 
 1. Set a GAS trigger (hourly, daily, weekly, etc.) for `post` function in `src/post.gs`.
     * `Edit > Trigger`.
 
-## Learning Data Sources
+## Implemented Learning Data Sources
 * [TED](https://www.ted.com/): The talk shown at the top of the index page.
+* [TED Short Talk](https://www.ted.com/talks?sort=newest&language=en&duration=0-6): The first talk on the list.
+* [Learner's Dictionally](http://www.learnersdictionary.com/word-of-the-day): Word of the day.
 * (To be added)
 
 # Todos
