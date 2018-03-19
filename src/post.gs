@@ -5,8 +5,11 @@ function createMentionPart(followers) {
 function chooseTopic(followers) {
   // TODO: Read configuration from GoogleSpreadsheet or something
   var time = new Date();
-  if (time.getHours() < 12) return 1;
-  return 2;
+  var hour = time.getHours();
+  
+  if (hour < 10) return 1;
+  else if (hour < 18) return 2;
+  return 3;
 }
 
 function createBody(followers) {
@@ -18,6 +21,8 @@ function createBody(followers) {
       return learnersDictWOD();
     case 2:
       return tedShortTalk();
+    case 3:
+      return techcrunchPopularJP();
   }
   return 'unexpected error';
 }

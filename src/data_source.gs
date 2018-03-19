@@ -39,3 +39,22 @@ function learnersDictWOD() {
   
   return 'Word of the Day: ' + word + ' (' + pos + ', ' + url + ')';
 }
+
+function techcrunchPopularJP() {
+  var html = UrlFetchApp.fetch('https://jp.techcrunch.com/popular/').getContentText();
+  
+  var popular = Parser.data(html).from('<div class="trending-container">').to("</a>").build();
+  
+  var title = Parser.data(popular).from('<div class="trending-title">').to("<").build();
+  var url = Parser.data(popular).from('<a href="').to('"').build();
+  
+  var message = unescapeHTML(title + ' ' + url);
+  
+  // if the URL has a date part YYYY-MM-DD, it should have an English article too
+  var m = url.match(/(\d{4})-(\d{2})-(\d{2})-(.+)/);
+  if (m === null || typeof m !== 'object') return message;
+  
+  var englishUrl = 'https://techcrunch.com/' + m[1] + '/' + m[2] + '/' + m[3] + '/' + m[4];
+  
+  return message + ' Eng: ' + englishUrl;
+}
