@@ -17,7 +17,7 @@ function createBody(followers) {
     case 1:
       return learnersDictWOD();
     case 2:
-      return tedHomePageSpotlight();
+      return tedShortTalk();
   }
   return 'unexpected error';
 }
