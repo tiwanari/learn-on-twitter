@@ -2,12 +2,32 @@ function tedHomePageSpotlight() {
   var html = UrlFetchApp.fetch('https://www.ted.com/').getContentText();
   
   var spotlight = Parser.data(html).from("<a class='sa d:b pos:r ga-link'").to(">").build();
-
+  
   // NOTE: href omits the domain part
   var url = Parser.data(spotlight).from("data-ga-label='1 of 3-up | ").to("'").build();
   var title = Parser.data(spotlight).from("title='").to("'").build();
   
-  return title + ' ' + url;
+  var message = unescapeHTML(stitle + ' ' + url);
+  
+  return message;
+}
+
+function tedShortTalk() {
+  var html = UrlFetchApp.fetch('https://www.ted.com/talks?duration=0-6&language=en&page=1&sort=newest').getContentText();
+  
+  var top = Parser.data(html).from("<h4 class='h12 talk-link__speaker'").to("/a>").build();
+  
+  var speaker = Parser.data(top).from(">").to("</h4>").build();
+  
+  // NOTE: href omits the domain part
+  var domain = 'https://www.ted.com';
+  var url = domain + Parser.data(top).from("href='").to("'").build();
+  
+  var title = Parser.data(top).from("lang='en'>").to("<").build();
+  
+  var message = unescapeHTML(speaker + ' ' + title + ' ' + url);
+  
+  return message;
 }
 
 function learnersDictWOD() {
