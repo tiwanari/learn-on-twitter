@@ -41,6 +41,7 @@ After completing the above processes, run `testTweet` function in `test/api.gs` 
 * [TED](https://www.ted.com/): The talk shown at the top of the index page.
 * [TED Short Talk](https://www.ted.com/talks?sort=newest&language=en&duration=0-6): The first talk on the list.
 * [Learner's Dictionally](http://www.learnersdictionary.com/word-of-the-day): Word of the day.
+* [Techcrunch Japan](https://jp.techcrunch.com/popular/): The first talk on the popular list with its English article URL if available.
 * (To be added)
 
 # Todos
