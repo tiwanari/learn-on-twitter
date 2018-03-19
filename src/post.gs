@@ -9,8 +9,9 @@ function chooseTopic(followers) {
   return 2;
 }
 
-function createBody() {
+function createBody(followers) {
   var topic = chooseTopic(followers);
+  Logger.log('topic: ' + topic);
   
   switch (topic) {
     case 1:
