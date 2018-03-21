@@ -27,7 +27,6 @@ function createBody(followers) {
   return 'unexpected error';
 }
 
-
 function createTweet(followers) {
   var mentions = createMentionPart(followers);
   var body = createBody(followers);
