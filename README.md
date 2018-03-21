@@ -31,11 +31,11 @@ NOTE: Choose the latest version.
 1. Check the log and copy the link.
 1. Open the link and accept what it says.
 
-After completing the above processes, run `testTweet` function in `test/api.gs` as a test, which posts a `Yeah!` tweet.
+After completing the above processes, run `testTweet` function in `test/twitter/api.gs` as a test, which posts a `Yeah!` tweet.
 
 ## Usage
 1. Set a GAS trigger (hourly, daily, weekly, etc.) for `post` function in `src/post.gs`.
-    * `Edit > Trigger`.
+    * `Edit > Custom Project's Trigger`.
 
 ## Implemented Learning Data Sources
 * [TED](https://www.ted.com/): The talk shown at the top of the index page.
