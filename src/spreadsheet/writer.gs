@@ -1,4 +1,6 @@
-function recordTweet(date, datasource, tweet) {
+function recordTweet(datasource, tweet) {
+  var date = new Date().toISOString();
+  
   var sheet = getReviewSheet();
   sheet.appendRow([date, datasource, tweet]);
 }
