@@ -4,7 +4,6 @@ var DATA_SOURCE = {
   LEARNERS_DICTIONARY_WORD_OF_THE_DAY: learnersDictWOD,
   TECH_CRUNCH_POPULAR_JP: techcrunchPopularJP
 };
-  
 
 function tedHomePageSpotlight() {
   var html = UrlFetchApp.fetch('https://www.ted.com/').getContentText();
