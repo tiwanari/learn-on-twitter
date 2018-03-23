@@ -6,7 +6,7 @@ function chooseDataSource(followers) {
   // TODO: Read configuration from GoogleSpreadsheet or something
   var hour = new Date().getHours();
   
-  if (hour < 10) return DATA_SOUCRE.LEARNERS_DICTIONARY_WORD_OF_THE_DAY;
+  if (hour < 10) return DATA_SOURCE.LEARNERS_DICTIONARY_WORD_OF_THE_DAY;
   else if (hour < 18) return DATA_SOURCE.TED_SHORT_TALK;
   return DATA_SOURCE.TECH_CRUNCH_POPULAR_JP;
 }
