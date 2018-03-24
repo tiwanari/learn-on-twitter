@@ -2,7 +2,8 @@ var DATA_SOURCE = {
   TED_HOME_PAGE_SPOTLIGHT: tedHomePageSpotlight,
   TED_SHORT_TALK: tedShortTalk,
   LEARNERS_DICTIONARY_WORD_OF_THE_DAY: learnersDictWOD,
-  TECH_CRUNCH_POPULAR_JP: techcrunchPopularJP
+  TECH_CRUNCH_POPULAR_JP: techcrunchPopularJP,
+  XKCD_RANDOM: xkcdRandom
 };
 
 function tedHomePageSpotlight() {
@@ -67,4 +68,21 @@ function techcrunchPopularJP() {
   var englishUrl = 'https://techcrunch.com/' + m[1] + '/' + m[2] + '/' + m[3] + '/' + m[4];
   
   return message + ' Eng: ' + englishUrl;
+}
+
+function xkcdRandom() {
+  var MAX_RETRY = 5;
+  var url = 'https://c.xkcd.com/random/comic/';
+  
+  // a fetch to the URL sometimes fails
+  var html = fetchWithRetry(url, MAX_RETRY);
+  
+  var finalUrl = Parser.data(html).from('Permanent link to this comic: ').to('<br />').build();
+  
+  var content = Parser.data(html).from('<div id="comic">').to('</div>').build();
+  
+  var image = Parser.data(content).from('src="').to('"').build();
+  var alt = Parser.data(content).from('alt="').to('"').build();
+  
+  return alt + ' ' + finalUrl + ' https:' + image;
 }
