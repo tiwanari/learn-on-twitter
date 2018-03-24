@@ -22,7 +22,10 @@ function tedHomePageSpotlight() {
 function tedShortTalk() {
   var html = UrlFetchApp.fetch('https://www.ted.com/talks?duration=0-6&language=en&page=1&sort=newest').getContentText();
   
-  var top = Parser.data(html).from("<h4 class='h12 talk-link__speaker'").to("/a>").build();
+  var tops = Parser.data(html).from("<h4 class='h12 talk-link__speaker'").to("/a>").iterate();
+  
+  // random pick-up
+  var top = tops[Math.floor(Math.random() * tops.length)];
   
   var speaker = Parser.data(top).from(">").to("</h4>").build();
   
