@@ -17,21 +17,22 @@ function tweet(text) {
   }
 }
 
+function convertJsonToParams(data) {
+  return Object.keys(data).map(function(k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+  }).join('&');
+}
+
 function getFollowers() {
   var service = getService();
   if (service.hasAccess()) {
-    var url = 'https://api.twitter.com/1.1/followers/list.json';
     var data = {
-      cursor: 1,
-      screen_name: 'LearnOnTwit',
       skip_status: true,
       include_user_entities: false
     };
-    var options = {
-      method: 'get',
-      data: data
-    };
-    var response = service.fetch(url, options);
+    var url = 
+        'https://api.twitter.com/1.1/followers/list.json?' + convertJsonToParams(data);
+    var response = service.fetch(url, { method: 'get' });
     var result = JSON.parse(response.getContentText());
     Logger.log(JSON.stringify(result, null, 2));
     return result.users;
