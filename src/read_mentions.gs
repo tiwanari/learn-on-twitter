@@ -4,7 +4,7 @@ function withinOneHour(time) {
 }
 
 function validateParams(op, time, dataSource) {
-  if (op !== 'add' || op !== 'remove') {
+  if (op !== 'add' && op !== 'remove') {
     return false;
   }
   if (time < 0 || 23 < time) {
@@ -27,9 +27,11 @@ function processRequest(user, op, time, dataSource, bot) {
   switch (op) {
     case 'add':
       addUserDataSourceRow(time, user, dataSource);
+      Logger.log('Inserted a row ' + time + ' ' + user + ' ' + dataSource);
       break;
     case 'remove':
       removeUserDataSourceRow(time, user, dataSource);
+      Logger.log('Deleted a row ' + time + ' ' + user + ' ' + dataSource);
       break;
   }
 }
