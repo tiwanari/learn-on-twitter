@@ -3,7 +3,8 @@ var DATA_SOURCE = {
   TED_SHORT_TALK: tedShortTalk,
   LEARNERS_DICTIONARY_WORD_OF_THE_DAY: learnersDictWOD,
   TECH_CRUNCH_POPULAR_JP: techcrunchPopularJP,
-  XKCD_RANDOM: xkcdRandom
+  XKCD_RANDOM: xkcdRandom,
+  WIRED_JP_FEED: wiredJPFeed
 };
 
 function tedHomePageSpotlight() {
@@ -85,4 +86,25 @@ function xkcdRandom() {
   var alt = Parser.data(content).from('alt="').to('"').build();
   
   return alt + ' ' + finalUrl + ' https:' + image;
+}
+
+function wiredJPFeed() {
+  var url = 'https://wired.jp/rssfeeder/';
+  
+  var feed = UrlFetchApp.fetch(url).getContentText();
+  
+  var firstItem = Parser.data(feed).from('<item>').to('</item>').build();
+  
+  var title = Parser.data(firstItem).from('<title>').to('</title>').build();
+  var link = Parser.data(firstItem).from('<link>').to('</link>').build();
+  
+  var article = UrlFetchApp.fetch(link).getContentText();
+  
+  if (!article.match(/WIRED \(US\)/)) {
+    return title + ' ' + link;
+  }
+  
+  var englishUrl = Parser.data(article).from("<a href='").to("' target='_blank' rel='nofollow'> WIRED (US)").build();
+      
+  return title + ' ' + link + ' Eng: ' + englishUrl;
 }
