@@ -4,6 +4,7 @@ function testAllDataSource() {
   testLearnersDictWOD();
   testTechcrunchPopularJP();
   testXkcdRandom();
+  testWiredJPFeed();
 }
 
 function testTedHomePageSpotlight() {
@@ -24,4 +25,8 @@ function testTechcrunchPopularJP() {
 
 function testXkcdRandom() {
   Logger.log(xkcdRandom());
-} 
+}
+
+function testWiredJPFeed() {
+  Logger.log(wiredJPFeed());
+}
