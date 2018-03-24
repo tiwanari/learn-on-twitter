@@ -2,15 +2,6 @@ function createMentionPart(followers) {
   return '@' + followers.join(' @');
 }
 
-function chooseDataSource(followers) {
-  // TODO: Read configuration from GoogleSpreadsheet or something
-  var hour = new Date().getHours();
-  
-  if (hour < 10) return DATA_SOURCE.LEARNERS_DICTIONARY_WORD_OF_THE_DAY;
-  else if (hour < 18) return DATA_SOURCE.TED_SHORT_TALK;
-  return DATA_SOURCE.TECH_CRUNCH_POPULAR_JP;
-}
-
 function createBody(followers, datasource) {
   return datasource();
 }
@@ -18,8 +9,47 @@ function createBody(followers, datasource) {
 function createTweet(followers, datasource) {
   var mentions = createMentionPart(followers);
   var body = createBody(followers, datasource);
-    
+  
   return mentions + ' ' + body;
+}
+
+function createTweets() {
+  var config = readUserDataSource();
+  var hour = new Date().getHours();
+  
+  var tweets = [];
+  config.forEach(function(row) {
+    if (row.time != hour) return;
+    
+    var datasource = DATA_SOURCE[row.data_source].func;
+    var tw = createTweet([row.user], datasource);
+    tweets.push({ text: tw, datasource: datasource });
+  });
+  return tweets;
+}
+
+function hourlyPost() {
+  var INTERVAL = 60 * 1000; // 1 min
+  
+  var tweets = createTweets();
+  tweets.forEach(function(tw, index) {
+    try {
+      tweet(tw.text);
+      recordTweet(tw.datasource.name, tw.text);
+    } catch (err) {
+      Logger.log(err);
+    }
+    Utilities.sleep(INTERVAL);
+  });
+}
+
+/** Testing purpose **/
+function chooseDataSource(followers) {
+  var hour = new Date().getHours();
+  
+  if (hour < 10) return DATA_SOURCE[2].func;
+  else if (hour < 18) return DATA_SOURCE[1].func;
+  return DATA_SOURCE[3].func;
 }
 
 function post() {
@@ -30,3 +60,4 @@ function post() {
   tweet(tw);
   recordTweet(datasource.name, tw);
 }
+/** /Testing purpose **/

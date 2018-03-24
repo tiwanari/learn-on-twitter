@@ -10,7 +10,7 @@ function validateParams(op, time, dataSource) {
   if (time < 0 || 23 < time) {
     return false;
   }
-  if (dataSource < 1 || Object.keys(DATA_SOURCE).length < dataSource) {
+  if (dataSource < 1 || DATA_SOURCE.length < dataSource) {
     return false;
   }
   return true;
@@ -18,7 +18,7 @@ function validateParams(op, time, dataSource) {
 
 function processRequest(user, op, time, dataSource, bot) {
   var REQUEST_FORMAT = 
-      'Usage: @' + bot + ' op([add|remove]) time([0-23], JST) data_source([1-' + Object.keys(DATA_SOURCE).length + '])';
+      'Usage: @' + bot + ' op([add|remove]) time([0-23], JST) data_source([1-' + DATA_SOURCE.length + '])';
  
   if (!validateParams(op, time, dataSource)) {
     return 'Validation Error! ' + REQUEST_FORMAT;
