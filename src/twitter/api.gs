@@ -49,3 +49,20 @@ function getFollowerNames() {
   Logger.log('Got followers: ' + names);
   return names;
 }
+
+function getMentions() {
+  var service = getService();
+  if (service.hasAccess()) {
+    var data = {
+      trim_user: false,
+      include_entities: false
+    };
+    var url = 
+        'https://api.twitter.com/1.1/statuses/mentions_timeline.json?' + convertJsonToParams(data);
+    var response = service.fetch(url, { method: 'get' });
+    var result = JSON.parse(response.getContentText());
+    Logger.log(JSON.stringify(result, null, 2));
+    
+    return result;
+  }
+}
