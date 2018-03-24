@@ -3,6 +3,7 @@ function testAllDataSource() {
   testTedShortTalk();
   testLearnersDictWOD();
   testTechcrunchPopularJP();
+  testXkcdRandom();
 }
 
 function testTedHomePageSpotlight() {
@@ -20,3 +21,7 @@ function testLearnersDictWOD() {
 function testTechcrunchPopularJP() {
   Logger.log(techcrunchPopularJP());
 }
+
+function testXkcdRandom() {
+  Logger.log(xkcdRandom());
+} 
