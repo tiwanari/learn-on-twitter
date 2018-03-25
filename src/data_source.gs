@@ -1,11 +1,11 @@
-var DATA_SOURCE = {
-  TED_HOME_PAGE_SPOTLIGHT: tedHomePageSpotlight,
-  TED_SHORT_TALK: tedShortTalk,
-  LEARNERS_DICTIONARY_WORD_OF_THE_DAY: learnersDictWOD,
-  TECH_CRUNCH_POPULAR_JP: techcrunchPopularJP,
-  XKCD_RANDOM: xkcdRandom,
-  WIRED_JP_FEED: wiredJPFeed
-};
+var DATA_SOURCE = [
+  {name: 'TED_HOME_PAGE_SPOTLIGHT', func: tedHomePageSpotlight},
+  {name: 'TED_SHORT_TALK', func: tedShortTalk},
+  {name: 'LEARNERS_DICTIONARY_WORD_OF_THE_DAY', func: learnersDictWOD},
+  {name: 'TECH_CRUNCH_POPULAR_JP', func: techcrunchPopularJP},
+  {name: 'XKCD_RANDOM', func: xkcdRandom},
+  {name: 'WIRED_JP_FEED', func: wiredJPFeed}
+];
 
 function tedHomePageSpotlight() {
   var html = UrlFetchApp.fetch('https://www.ted.com/').getContentText();
@@ -16,7 +16,7 @@ function tedHomePageSpotlight() {
   var url = Parser.data(spotlight).from("data-ga-label='1 of 3-up | ").to("'").build();
   var title = Parser.data(spotlight).from("title='").to("'").build();
   
-  var message = unescapeHTML(stitle + ' ' + url);
+  var message = unescapeHTML(title + ' ' + url);
   
   return message;
 }

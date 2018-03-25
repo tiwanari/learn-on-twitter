@@ -3,48 +3,59 @@ function withinOneHour(time) {
   return ((new Date) - new Date(time)) < ONE_HOUR
 }
 
-function validateParams(op, time, dataSource) {
-  if (op !== 'add' || op !== 'remove') {
+function validateParams(op, time, datasource) {
+  if (op !== 'add' && op !== 'remove') {
     return false;
   }
   if (time < 0 || 23 < time) {
     return false;
   }
-  if (dataSource < 1 || Object.keys(DATA_SOURCE).length < dataSource) {
+  if (datasource < 1 || DATA_SOURCE.length < datasource) {
     return false;
   }
   return true;
 }
 
-function processRequest(user, op, time, dataSource, bot) {
+function processRequest(user, op, time, datasource, bot) {
   var REQUEST_FORMAT = 
-      'Usage: @' + bot + ' op([add|remove]) time([0-23], JST) data_source([1-' + Object.keys(DATA_SOURCE).length + '])';
- 
-  if (!validateParams(op, time, dataSource)) {
+      'Usage: @' + bot + ' op([add|remove]) time([0-23], JST) data_source([1-' + DATA_SOURCE.length + '])';
+  
+  if (!validateParams(op, time, datasource)) {
     return 'Validation Error! ' + REQUEST_FORMAT;
   }
   
+  var action;
   switch (op) {
     case 'add':
-      addUserDataSourceRow(time, user, dataSource);
+      addUserDatasourceRow(time, user, datasource);
+      Logger.log('Inserted a row ' + time + ' ' + user + ' ' + datasource);
+      action = 'adding';
       break;
     case 'remove':
-      removeUserDataSourceRow(time, user, dataSource);
+      removeUserDatasourceRow(time, user, datasource);
+      Logger.log('Deleted a row ' + time + ' ' + user + ' ' + datasource);
+      action = 'removing';
       break;
+  }
+  
+  try {
+    tweet('@' + user + ' received your request for ' + action + ' ' + DATA_SOURCE[datasource - 1].name + ' at ' + time + ' (JST) everyday');
+  } catch (err) {
+    // ignore
   }
 }
 
 function readMentions() {
   var mentions = getMentions();
   
-  for (var i = 0; i < mentions.length; i++) {
+  for (var i = mentions.length - 1; i >= 0; i--) {
     var mention = mentions[i];
     
     var time = mention.created_at;
     
     if (!withinOneHour(time)) {
       Logger.log('Too old. Ignore');
-      return;
+      continue;
     }
     
     var user = mention.user.screen_name;
@@ -62,11 +73,11 @@ function readMentions() {
     var bot = m[1];
     var op = m[2].toLowerCase();
     var time = parseInt(m[3]);
-    var dataSource = parseInt(m[4]);
+    var datasource = parseInt(m[4]);
     
-    Logger.log('Request from @' + user + ': ' + op + ' ' + time + ' ' + dataSource);
+    Logger.log('Request from @' + user + ': ' + op + ' ' + time + ' ' + datasource);
     
-    var err = processRequest(user, op, time, dataSource, bot);
+    var err = processRequest(user, op, time, datasource, bot);
     if (err) {
       tweet('@' + user + ' ' + err);
     }
