@@ -1,5 +1,5 @@
-function readUserDataSource() {
-  var sheet = getOrCreateSheet('User-DataSource', ['Time (0 - 23, JST)', 'User', 'Data Source']);
+function readUserDatasource() {
+  var sheet = getOrCreateSheet('User-Datasource', ['Time (0 - 23, JST)', 'User', 'Data Source']);
   var rows = sheet.getDataRange();
   var numRows = rows.getNumRows();
   var data = rows.getValues()

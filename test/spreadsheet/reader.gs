@@ -1,3 +1,3 @@
-function testReadUserDataSource() {
-  Logger.log(readUserDataSource());
+function testReadUserDatasource() {
+  Logger.log(readUserDatasource());
 }

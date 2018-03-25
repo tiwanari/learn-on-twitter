@@ -4,16 +4,16 @@ function testRecordTweet() {
   recordTweet(datasource, tweet);
 }
 
-function testAddUserDataSourceRow() {
+function testAddUserDatasourceRow() {
   var time = 13;
   var user = 'helpfulUser';
-  var dataSource = 1;
-  addUserDataSourceRow(time, user, dataSource);
+  var datasource = 1;
+  addUserDatasourceRow(time, user, datasource);
 }
 
-function testRemoveUserDataSourceRow() {
+function testRemoveUserDatasourceRow() {
   var time = 13;
   var user = 'helpfulUser';
-  var dataSource = 1;
-  removeUserDataSourceRow(time, user, dataSource);
+  var datasource = 1;
+  removeUserDatasourceRow(time, user, datasource);
 }

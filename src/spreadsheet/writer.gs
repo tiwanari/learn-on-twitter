@@ -21,30 +21,30 @@ function recordTweet(datasource, tweet) {
   sheet.appendRow([date, datasource, tweet]);
 }
 
-function addUserDataSourceRow(time, user, dataSource) {
-  var sheet = getOrCreateSheet('User-DataSource', ['Time (0 - 23, JST)', 'User', 'Data Source']);
+function addUserDatasourceRow(time, user, datasource) {
+  var sheet = getOrCreateSheet('User-Datasource', ['Time (0 - 23, JST)', 'User', 'Data Source']);
   var data = sheet.getDataRange().getValues();
   
   for (i in data) {
     var row = data[i];
-    if (row[0] === time && row[1] === user && row[2] == dataSource) {
+    if (row[0] === time && row[1] === user && row[2] == datasource) {
       Logger.log('Found the same row.');
       return;
     }
   }
   
-  sheet.appendRow([time, user, dataSource]);
+  sheet.appendRow([time, user, datasource]);
 }
 
-function removeUserDataSourceRow(time, user, dataSource) {
-  var sheet = getOrCreateSheet('User-DataSource', ['Time (0 - 23, JST)', 'User', 'Data Source']);
+function removeUserDatasourceRow(time, user, datasource) {
+  var sheet = getOrCreateSheet('User-Datasource', ['Time (0 - 23, JST)', 'User', 'Data Source']);
   var rows = sheet.getDataRange();
   var numRows = rows.getNumRows();
   var data = rows.getValues()
   
   for (var i = 0; i < numRows; i++) {
     var row = data[i];
-    if (row[0] === time && row[1] === user && row[2] == dataSource) {
+    if (row[0] === time && row[1] === user && row[2] == datasource) {
       Logger.log('Found the target row at ' + i);
       sheet.deleteRow(i + 1);
       return;

@@ -14,7 +14,7 @@ function createTweet(followers, datasource) {
 }
 
 function createTweets() {
-  var config = readUserDataSource();
+  var config = readUserDatasource();
   var hour = new Date().getHours();
   
   var tweets = [];
@@ -32,7 +32,7 @@ function hourlyPost() {
   var INTERVAL = 60 * 1000; // 1 min
   
   var tweets = createTweets();
-  tweets.forEach(function(tw, index) {
+  tweets.forEach(function(tw) {
     try {
       tweet(tw.text);
       recordTweet(tw.datasource.name, tw.text);
@@ -44,7 +44,7 @@ function hourlyPost() {
 }
 
 /** Testing purpose **/
-function chooseDataSource(followers) {
+function chooseDatasource(followers) {
   var hour = new Date().getHours();
   
   if (hour < 10) return DATA_SOURCE[2].func;
@@ -54,7 +54,7 @@ function chooseDataSource(followers) {
 
 function post() {
   var followers = getFollowerNames();
-  var datasource = chooseDataSource(followers);
+  var datasource = chooseDatasource(followers);
   var tw = createTweet(followers, datasource);
   
   tweet(tw);

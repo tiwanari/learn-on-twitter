@@ -1,4 +1,4 @@
-function testAllDataSource() {
+function testAllDatasource() {
   testTedHomePageSpotlight();
   testTedShortTalk();
   testLearnersDictWOD();
