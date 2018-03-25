@@ -45,10 +45,12 @@ function hourlyPost() {
 
 
 function announce() {
-  var message = 'Thank you for your registration!';
-  var mentions = creatMentionPart(getFollowerNames());
+  var message = 'Please reply to me in the following format.';
+  var help = 
+      'Usage: "@LearnOnTwit op([add|remove]) time([0-23], JST) data_source([1-' + DATA_SOURCE.length + '])"';
+  var mentions = createMentionPart(getFollowerNames());
   
-  tweet(mentions + ' ' + message);
+  tweet(mentions + ' ' + message + ' ' + help);
 }
 
 /** Testing purpose **/
