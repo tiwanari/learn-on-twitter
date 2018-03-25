@@ -43,6 +43,14 @@ function hourlyPost() {
   });
 }
 
+
+function announce() {
+  var message = 'Thank you for your registration!';
+  var mentions = creatMentionPart(getFollowerNames());
+  
+  tweet(mentions + ' ' + message);
+}
+
 /** Testing purpose **/
 function chooseDatasource(followers) {
   var hour = new Date().getHours();
