@@ -100,11 +100,11 @@ function wiredJPFeed() {
   
   var article = UrlFetchApp.fetch(link).getContentText();
   
-  if (!article.match(/WIRED \(US\)/)) {
+  if (!article.match(/WIRED *\(US\)/)) {
     return title + ' ' + link;
   }
   
-  var englishUrl = Parser.data(article).from("<a href='").to("' target='_blank' rel='nofollow'> WIRED (US)").build();
+  var englishUrl = Parser.data(article).from("<a href='").to("' target='_blank' rel='nofollow'> WIRED").build();
       
   return title + ' ' + link + ' Eng: ' + englishUrl;
 }
