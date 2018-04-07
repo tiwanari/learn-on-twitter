@@ -1,14 +1,27 @@
 Learn on Twitter
 ===
 
-This repository is a collection of Google Apps Scripts to run a Twitter bot which sends its followers learning topics periodically. You can setup your own Twitter bot using these scripts easily by following the setup section.
+This repository has a collection of Google Apps Scripts to run a Twitter bot which sends its followers learning topics periodically. You can easily setup your own Twitter bot using these scripts by following the setup section.
 
 Example: https://twitter.com/LearnOnTwit
 
+# Bot Features
+* Fetches data sources and sends scraped results to followers periodically.
+    * Users can choose (1) what data source and (2) when they want to receive a tweet by mentioning the bot.
 
-# How to use
-## Setup
-1. Make a Google Apps Script on https://script.google.com.
+    ```
+    Usage: @LearnOnTwit op([add|remove]) time([0-23]) data_source([1-DATA_SOURCE.length])
+    e.g., @LearnOnTwit add 7 1 1
+    ```
+
+    * Users' preferences are stored in a Google Sheets.
+* Users can check what the bot sent to them by checking a Google Sheets.
+    * Example: [Learn On Twitter](https://goo.gl/RXcnBD).
+
+
+# How to set up your own bot
+## Preparation
+1. Make a Google Apps Scripts project on https://script.google.com.
 1. Pull this repository using https://github.com/leonhartX/gas-github.
 1. Copy the script URL `https://script.google.com/macros/d/{PROJECT_ID}`.
 1. Create a Twitter application on https://apps.twitter.com/app/.
@@ -31,26 +44,29 @@ NOTE: Choose the latest version.
 1. Check the log and copy the link.
 1. Open the link and accept what it says.
 
-After completing the above processes, run `testTweet` function in `test/twitter/api.gs` as a test, which posts a `Yeah!` tweet.
+After completing the above processes, run `testTweet` function in `test/twitter/api.gs` as a test, which posts a `Yeah!` tweet. Before running the function, you'll be asked to authorize the permissions the scripts needs. Please accept them.
+
 
 ## Usage
-1. Set a GAS trigger (hourly, daily, weekly, etc.) for `post` function in `src/post.gs`.
-    * `Edit > Custom Project's Trigger`.
+1. Set GAS triggers (`Edit > Current project's triggers`).
+    * Set a GAS hourly trigger to `readMentions` function in `src/read_mentions.gs`.
+        * This function checks mentions to the bot and modify followers' configuration if there are requests.
+    * Set a GAS hourly trigger to `hourlyPost` function in `src/post.gs`.
+        * This function checks users' preference which is a Google Sheets and sends tweets to followers according to the configuration.
 
-## Implemented Learning Data Sources
+The result should be like this:
+![GAS triggers](doc/readme/triggers.png)
+
+
+# Implemented Learning Data Sources
 * [TED](https://www.ted.com/): The talk shown at the top of the index page.
 * [TED Short Talk](https://www.ted.com/talks?sort=newest&language=en&duration=0-6): A randomly selected short (0-6 min) talk on the list.
 * [Learner's Dictionally](http://www.learnersdictionary.com/word-of-the-day): Word of the day.
 * [Techcrunch Japan](https://jp.techcrunch.com/popular/): The first talk on the popular list with its English article URL if available.
 * [xkcd](https://xkcd.com/): A randomly chosen comic.
+* [WIRED JP](https://wired.jp/rssfeeder/): The first article in a feed with its English article URL if available.
 * (To be added)
 
-# Todos
-Refer to Issues to see the latest Todo list.
-
-* Make several options for learning data source.
-* Use Google Spreadsheet as a configuration file.
-    * Keep usernames and data sources each user wants to use.
 
 # License
 MIT
